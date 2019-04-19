@@ -6,8 +6,8 @@
 #include <netdb.h>
 #include <unistd.h>
 
-#include "translate_error.h"
 #include "net.h"
+#include "translate_error.h"
 
 #define NULL_PROTOCOL 0
 #define SOCKET_FAILURE -1

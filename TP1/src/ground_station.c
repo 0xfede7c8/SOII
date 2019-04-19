@@ -14,24 +14,24 @@ void server_fun(__attribute__((unused)) int pid, __attribute__((unused)) int fd)
 void child_server_fun(__attribute__((unused)) int pid, int fd)
 {
     char buffer[MAX_SZ];
-    ssize_t n = read_socket(fd, buffer, MAX_SZ);
-    printf("%s %li", buffer, n);
+    const ssize_t n = read_socket(fd, buffer, MAX_SZ);
+    printf("%s\n%li\n", buffer, n);
     if (validate_password(buffer))
     {
-        printf("password correct");
+        printf("Password correct\n");
     }
     else
     {
-        printf("Password incorrect.\n");
+        printf("Password incorrect\n");
     }
     close(fd);
     exit(0);
 }
 
-int run_ground_server()
+int run_ground_server(const int port)
 {
     int srv_fd;
-    int success = create_server(SOCK_STREAM, 5002, 5, &srv_fd);
+    const int success = create_server(SOCK_STREAM, port, 5, &srv_fd);
     if (success)
     {
         while(1)
