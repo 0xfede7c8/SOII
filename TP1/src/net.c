@@ -16,7 +16,7 @@
 int read_socket(const int fd, char* buffer, const size_t size)
 {
     memset(buffer, 0, size);
-    ssize_t n = read(fd, buffer, size-1);
+    const ssize_t n = read(fd, buffer, size-1);
     if (n < 0)
     {
         print_errno();
@@ -24,7 +24,15 @@ int read_socket(const int fd, char* buffer, const size_t size)
     return n;
 }
 
-int write_socket(const int fd, char* buffer, const size_t size);
+int write_socket(const int fd, const char* buffer, const size_t size)
+{
+    const ssize_t n = write(fd, buffer, size-1);
+    if (n < 0)
+    {
+        print_errno();
+    }
+    return n;
+}
 
 void check_fork_and_execute_cbs(int pid, void (*parent_fun)(int, int), void (*child_fun)(int, int), int fd)
 {

@@ -33,5 +33,5 @@ void check_fork_and_execute_cbs(int pid, void (*parent_fun)(int, int), void (*ch
 
 int read_socket(int fd, char* buffer, size_t size);
 
-int write_socket(int fd, char* buffer, size_t size);
+int write_socket(int fd, const char* buffer, size_t size);
 #endif

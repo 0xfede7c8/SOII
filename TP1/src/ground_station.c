@@ -8,15 +8,12 @@
 
 void server_fun(__attribute__((unused)) int pid, __attribute__((unused)) int fd)
 {
-    printf("Server delegated work to child.\n");
+    printf("Child spawned. Accepting other connections...\n");
 }
 
 void child_server_fun(__attribute__((unused)) int pid, int fd)
 {
-    char buffer[MAX_SZ];
-    const ssize_t n = read_socket(fd, buffer, MAX_SZ);
-    printf("%s\n%li\n", buffer, n);
-    if (validate_password(buffer))
+    if (validate_server(fd))
     {
         printf("Password correct\n");
     }
@@ -45,6 +42,6 @@ int run_ground_server(const int port)
     else
     {
         perror("Can't create server.\n");
-        return -1;
+        return 0;
     }
 }

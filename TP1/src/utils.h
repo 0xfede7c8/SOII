@@ -1,6 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <stdlib.h>
+
 int read_file_bytes(const char* filename, char** bytes)
 {
     int ret = 1;
